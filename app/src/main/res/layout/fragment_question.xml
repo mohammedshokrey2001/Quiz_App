@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="progress"
+            type="Integer" />
+
+        <variable
+            name="viewModel"
+            type="com.example.quizapp.ui.AppViewModel" />
+        <variable
+            name="question"
+            type="com.example.quizapp.domain.QuestionDomainModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.QuestionFragment">
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="300dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:indeterminate="false"
+            android:max="@{viewModel.questionNumber}"
+            android:min="1"
+            android:minHeight="50dp"
+            android:progress="@{progress}"
+            android:progressBackgroundTint="@color/purple_200"
+            android:progressTint="@color/purple_700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.387"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/question_text_view"
+            android:layout_width="367dp"
+            android:layout_height="132dp"
+            android:layout_marginTop="10dp"
+            android:text="@{question.question}"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/_726470"
+            app:layout_constraintEnd_toEndOf="@+id/question_text_view"
+            app:layout_constraintStart_toStartOf="@+id/question_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/question_text_view"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:text="@{Integer.toString(progress) +`/`+Integer.toString(viewModel.questionNumber)}"
+            app:layout_constraintStart_toEndOf="@+id/progressBar"
+            app:layout_constraintTop_toTopOf="@+id/progressBar" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="199dp"
+            android:layout_height="153dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="@+id/question_text_view"
+            app:layout_constraintStart_toEndOf="@+id/progressBar"
+            app:layout_constraintStart_toStartOf="@+id/question_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar">
+
+            <RadioButton
+                android:id="@+id/answer1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{question.answerA}" />
+
+            <RadioButton
+                android:id="@+id/answer2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{question.answerB}" />
+
+            <RadioButton
+                android:id="@+id/answer3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{question.answerC}" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="226dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="25dp"
+            android:text="@string/submit"
+            app:layout_constraintEnd_toEndOf="@+id/question_text_view"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="@+id/question_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
